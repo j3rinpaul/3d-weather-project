@@ -5,6 +5,10 @@
 ![SciPy](https://img.shields.io/badge/SciPy-8CAAE6.svg?logo=scipy)
 ![Status](https://img.shields.io/badge/Status-Active-success.svg)
 
+
+![Simulation Demo](3dwd.gif)
+
+
 ## 📌 Overview
 A specialized computational tool engineered to transform raw, complex meteorological datasets into functional 3D geometric structures. This project bridges physical atmospheric constraints with real-time computational rendering, allowing for the precise modeling of volumetric fluid flows and wind trajectories.
 
@@ -29,7 +33,7 @@ This tool was built to explore the intersection of classical geometric constrain
 The pipeline reads raw meteorological datasets, handles spatial coordinate alignment, and structures noisy environmental data into unified, high-density 3D grids optimized for geometric queries.
 
 ### 2. Custom Trilinear Interpolation Pipeline
-[cite_start]To guarantee fluid continuity between discrete grid data points, the engine avoids heavy third-party black-box libraries and utilizes a custom-built mathematical implementation of trilinear interpolation[cite: 79]:
+To guarantee fluid continuity between discrete grid data points, the engine avoids heavy third-party black-box libraries and utilizes a custom-built mathematical implementation of trilinear interpolation:
 
 ```python
 import numpy as np
@@ -59,7 +63,7 @@ def trilinear_interpolate(x, y, z, grid_values):
     return c0 * (1 - z) + c1 * z
 ```
 
-![Simulation Demo](docs/3dwd.gif)
+
 
 ## ⚙️ Installation & Setup
 To run this project locally, clone the repository and install the required dependencies:
