@@ -10,6 +10,7 @@ A specialized computational tool engineered to transform raw, complex meteorolog
 
 This tool was built to explore the intersection of classical geometric constraints, spatial data processing, and 3D visualization.
 
+
 ## 🚀 Key Features
 * **Volumetric Data Processing:** Transforms raw meteorological data into structured, renderable 3D environments.
 * **Advanced Interpolation:** Implements custom trilinear interpolation algorithms to accurately map fluid atmospheric flows across discrete spatial grids.
@@ -21,6 +22,44 @@ This tool was built to explore the intersection of classical geometric constrain
 * **Data Processing & Math:** NumPy, SciPy
 * **Visualization/Rendering:** Matplotlib 
 * **Concepts:** 3D Scene Reconstruction, Trilinear Interpolation, Vector Fields, Spatial Reasoning.
+
+## 📦 System Architecture & Features
+
+### 1. Multi-Dimensional Data Parsing
+The pipeline reads raw meteorological datasets, handles spatial coordinate alignment, and structures noisy environmental data into unified, high-density 3D grids optimized for geometric queries.
+
+### 2. Custom Trilinear Interpolation Pipeline
+[cite_start]To guarantee fluid continuity between discrete grid data points, the engine avoids heavy third-party black-box libraries and utilizes a custom-built mathematical implementation of trilinear interpolation[cite: 79]:
+
+```python
+import numpy as np
+
+def trilinear_interpolate(x, y, z, grid_values):
+    """
+    Computes linear interpolation across the X, Y, and Z axes sequentially.
+    
+    Parameters:
+    x, y, z (float): Relative spatial coordinates within the target cell [0, 1]
+    grid_values (array): Shape (2, 2, 2) array containing the values at the 8 cube vertices
+    
+    Returns:
+    float: The approximated continuous vector field value at arbitrary coordinates
+    """
+    # Step 1: Interpolate along X for the 4 pairs of vertices
+    c00 = grid_values[0,0,0] * (1 - x) + grid_values[1,0,0] * x
+    c01 = grid_values[0,0,1] * (1 - x) + grid_values[1,0,1] * x
+    c10 = grid_values[0,1,0] * (1 - x) + grid_values[1,1,0] * x
+    c11 = grid_values[0,1,1] * (1 - x) + grid_values[1,1,1] * x
+    
+    # Step 2: Interpolate along Y across the resulting values
+    c0 = c00 * (1 - y) + c10 * y
+    c1 = c01 * (1 - y) + c11 * y
+    
+    # Step 3: Interpolate along Z to compute the final scalar/vector value
+    return c0 * (1 - z) + c1 * z
+```
+
+![Simulation Demo](docs/3dwd.gif)
 
 ## ⚙️ Installation & Setup
 To run this project locally, clone the repository and install the required dependencies:
