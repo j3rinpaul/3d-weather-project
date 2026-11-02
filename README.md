@@ -6,7 +6,7 @@
 ![Status](https://img.shields.io/badge/Status-Active-success.svg)
 
 
-![Simulation Demo](assets\3dwd.gif)
+![Simulation Demo](https://github.com/j3rinpaul/3d-weather-project/blob/master/assets/3dwd.gif)
 
 
 ## 📌 Overview
