@@ -6,7 +6,7 @@
 ![Status](https://img.shields.io/badge/Status-Active-success.svg)
 
 
-![Simulation Demo](\assests\3dwd.gif)
+![Simulation Demo](assets\3dwd.gif)
 
 
 ## 📌 Overview
